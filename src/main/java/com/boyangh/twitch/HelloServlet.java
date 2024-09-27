@@ -10,12 +10,13 @@ import jakarta.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Code to handle POST requests goes here
+            throws IOException {
+        response.getWriter().print("Hello World");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.getWriter().print("Hello World");
+            throws IOException {
+        String gamename = request.getParameter("gamename");
+        response.getWriter().println("Game name: " + gamename);
     }
 }
