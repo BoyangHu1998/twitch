@@ -6,6 +6,8 @@
     <servlet>
         <servlet-name>twitch</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+<!--        verify databases created-->
     </servlet>
 
     <servlet-mapping>
