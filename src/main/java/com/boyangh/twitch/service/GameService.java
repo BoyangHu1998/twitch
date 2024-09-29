@@ -56,11 +56,7 @@ public class GameService {
 
     // Method to build search URL for Twitch API (e.g., Clips, Streams, etc.)
     private String buildSearchURL(String url, String gameId, int limit) {
-        try {
-            gameId = URLEncoder.encode(gameId, "UTF-8");  // Encode the gameId to handle special characters
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        gameId = URLEncoder.encode(gameId, StandardCharsets.UTF_8);  // Encode the gameId to handle special characters
         return String.format(url, gameId, limit);  // Format the URL with gameId and limit
     }
 
