@@ -1,14 +1,14 @@
 package com.boyangh.twitch.dao;
 
 import com.boyangh.twitch.entity.db.Item;
+import com.boyangh.twitch.entity.db.ItemType;
 import com.boyangh.twitch.entity.db.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 @Repository
 public class FavoriteDao {
@@ -21,9 +21,10 @@ public class FavoriteDao {
         try {
             session = sessionFactory.openSession();
             User user = session.get(User.class, userId);
-            user.getItemSet().add(item);
+            Set<Item> userItemSet = user.getItemSet();
+            userItemSet.add(item);
             session.beginTransaction();
-            session.persist(user);
+            session.merge(user);  // Use merge to update existing user and its associated items
             session.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

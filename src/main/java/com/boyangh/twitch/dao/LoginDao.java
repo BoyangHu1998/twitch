@@ -12,7 +12,7 @@ public class LoginDao {
     @Autowired
     private SessionFactory sessionFactory;  // SessionFactory instance injected by Spring
 
-    // Verifies the userId and password. Returns the user name if credentials are correct.
+    // Verifies the userId and password. Returns the username if credentials are correct.
     public String verifyLogin(String userId, String password) {
         String name = "";  // Initialize the name to an empty string
 

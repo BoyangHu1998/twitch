@@ -3,6 +3,7 @@ package com.boyangh.twitch.entity.db;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,11 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
+
+    @Version  // 用于乐观锁控制
+    private int version;
 
     @Id
     @Column(name = "user_id")
@@ -31,7 +36,7 @@ public class User implements Serializable {
     @JsonProperty("last_name")
     private String lastName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "favorite_records",
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "item_id") })
