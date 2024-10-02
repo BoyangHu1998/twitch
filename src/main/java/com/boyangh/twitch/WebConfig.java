@@ -10,10 +10,12 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")  // Apply CORS to all paths
-                .allowedOrigins("http://localhost")  // Allow your frontend origin
+                .allowedOrigins("http://localhost",
+                                "https://topical-cleanly-condor.ngrok-free.app")  // Allow your frontend origin
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allowed HTTP methods
                 .allowedHeaders("*")  // Allow all headers
                 .allowCredentials(true)  // Allow credentials (cookies, etc.)
+                .exposedHeaders("Set-Cookie")
                 .maxAge(3600);  // Cache the preflight response for 1 hour
     }
 }
