@@ -24,8 +24,8 @@ public class ApplicationConfig {
 
     @Bean(name = "dataSource")
     public DataSource dataSource() {
-//        String RDS_ENDPOINT = "localhost";  // change when deploy
-        String RDS_ENDPOINT = "host.docker.internal";  // change when deploy
+        String RDS_ENDPOINT = "localhost";  // change when deploy
+//        String RDS_ENDPOINT = "host.docker.internal";  // change when deploy
         String USERNAME = "root";
         String PASSWORD = "123123";
         // Replace the values above with your actual information created last lesson
