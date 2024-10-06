@@ -17,6 +17,9 @@ function getCsrfToken() {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+const csrfToken = getCsrfToken('csrftoken'); // Fetch the token from a cookie
+
+
 export const login = (credential) => {
   return fetch(loginUrl, {
     method: 'POST',
