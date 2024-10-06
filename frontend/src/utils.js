@@ -8,6 +8,15 @@ const SERVER_ORIGIN = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 const loginUrl = `${SERVER_ORIGIN}/login`;
 
+
+// CORS CSRF
+// Function to get the CSRF token from the cookies
+function getCsrfToken() {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; XSRF-TOKEN=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 export const login = (credential) => {
   return fetch(loginUrl, {
     method: 'POST',
@@ -116,6 +125,7 @@ export const addFavoriteItem = (favItem) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': csrfToken // Include the CSRF token here
     },
     credentials: 'include',
     mode: 'cors',  // Ensure you're explicitly setting this
@@ -132,6 +142,7 @@ export const deleteFavoriteItem = (favItem) => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': csrfToken // Include the CSRF token here
     },
     credentials: 'include',
     mode: 'cors',  // Ensure you're explicitly setting this
@@ -145,6 +156,10 @@ export const deleteFavoriteItem = (favItem) => {
 
 export const getFavoriteItem = () => {
   return fetch(favoriteItemUrl, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': csrfToken // Include the CSRF token here
+    },
     credentials: 'include',
     mode: 'cors',  // Ensure you're explicitly setting this
   }).then((response) => {
@@ -160,6 +175,10 @@ const getRecommendedItemsUrl = `${SERVER_ORIGIN}/recommendation`;
 
 export const getRecommendations = () => {
   return fetch(getRecommendedItemsUrl, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': csrfToken // Include the CSRF token here
+    },
     credentials: 'include',
     mode: 'cors',  // Ensure you're explicitly setting this
   }).then((response) => {
