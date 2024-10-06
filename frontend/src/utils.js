@@ -1,8 +1,8 @@
 // If you don't want to host your server code and client code together, you can 
 // pay AWS to host your server with HTTPS then config the api url endpoints like below
 // const SERVER_ORIGIN = '<Your server's url>'; 
-// const SERVER_ORIGIN = 'http://host.docker.internal:8080' || 'http://localhost:8080';
-const SERVER_ORIGIN =  'http://localhost:8080';
+const SERVER_ORIGIN = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+// const SERVER_ORIGIN =  'http://localhost:8080';
 // const SERVER_ORIGIN = '';
 
 
