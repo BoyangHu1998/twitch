@@ -11,7 +11,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")  // Apply CORS to all paths
                 .allowedOrigins("http://localhost",
-                                "https://topical-cleanly-condor.ngrok-free.app")  // Allow your frontend origin
+                                "https://topical-cleanly-condor.ngrok-free.app",
+                                "https://twitch-recommend.netlify.app")  // Allow your frontend origin
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allowed HTTP methods
                 .allowedHeaders("*")  // Allow all headers
                 .allowCredentials(true)  // Allow credentials (cookies, etc.)
