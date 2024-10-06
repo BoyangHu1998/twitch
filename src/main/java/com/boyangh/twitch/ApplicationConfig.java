@@ -24,10 +24,10 @@ public class ApplicationConfig {
 
     @Bean(name = "dataSource")
     public DataSource dataSource() {
-        String RDS_ENDPOINT = "localhost";  // change when deploy
-//        String RDS_ENDPOINT = "host.docker.internal";  // change when deploy
-        String USERNAME = "root";
-        String PASSWORD = "123123";
+//        String RDS_ENDPOINT = "localhost";  // TODO: change when deploy
+        String RDS_ENDPOINT = "database-1.cngmuuk4sqmi.ap-southeast-2.rds.amazonaws.com";  // TODO: change when deploy
+        String USERNAME = "root"; // TODO: change when deploy
+        String PASSWORD = "12345678"; // TODO: change when deploy
         // Replace the values above with your actual information created last lesson
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -42,7 +42,8 @@ public class ApplicationConfig {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 //        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+//        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         return hibernateProperties;
     }
